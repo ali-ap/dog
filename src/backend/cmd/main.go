@@ -3,6 +3,7 @@ package main
 import (
 	"dog/api/middlewares"
 	"dog/api/server"
+	"dog/configs"
 	"fmt"
 )
 
@@ -15,5 +16,5 @@ func main() {
 
 	server := server.NewServer()
 	middlewares.AddDocumentationMiddleware(server)
-	server.Run("80")
+	server.Run(configs.AppConfig.Application.Port)
 }

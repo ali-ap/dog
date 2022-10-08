@@ -1,4 +1,4 @@
 application:
-  port: 8080
+  port: 80
 dig:
   host: 1.1.1.1

@@ -1,30 +1,20 @@
 FROM golang:1.18.4-bullseye AS builder
 
-LABEL maintainer="neusta schweiz"
+LABEL maintainer="Ali Alipour"
 
-# Install dependencies to be able to build our code
-#RUN apk add --no-cache --update git && apk add build-base
-
-# Set the working directory
 WORKDIR /app
 
-# Copy go mod and sum files
-COPY ./src/*.go ./
+COPY ./*.go ./
 
-# Download all required packages
-#RUN go mod download
+COPY . .
 
-# Copy the source from the current directory to the Working Directory inside the container
-COPY ./src .
-
-# Compile the code
-
-RUN go build -o output/server main.go
+RUN go build -o output/server cmd/main.go
 
 
 FROM golang:1.18.4-bullseye AS final
 WORKDIR /app
 COPY --from=builder app/output/server .
+COPY --from=builder app/configs/app_config.yml ./configs/app_config.yml
 EXPOSE 80
 EXPOSE 443
 #RUN groupadd -r neusta && useradd --no-log-init -r -g neusta neusta

@@ -12,7 +12,7 @@ type Config struct {
 	Application struct {
 		// Port is the TCP Port which server to bind the HTTP Server to
 		Port string `yaml:"port"`
-	} `yaml:"app"`
+	} `yaml:"application"`
 	Dig struct {
 		// Host is the DNS address
 		Host string `yaml:"host"`

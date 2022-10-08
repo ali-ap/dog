@@ -6,7 +6,7 @@ import (
 	"github.com/miekg/dns"
 )
 
-// swagger:model SendPushNotificationToTokenCommand
+// swagger:model DigQuery
 type DigQuery struct {
 
 	// title of the notification

@@ -4,13 +4,16 @@ import (
 	"github.com/miekg/dns"
 )
 
-// swagger:model CommonResponse
+// swagger:model DigResponse
 type DigResponse struct {
 
-	// Message of the response
-	// in: string
+	// DNS records
+	// in: []string
 	Records []string `json:"records"`
-	Raw     dns.Msg  `json:"raw"`
+
+	// raw query response
+	// in: dns.Msg
+	Raw dns.Msg `json:"raw"`
 }
 
 func MapDNSMessageToDigResponse(msg *dns.Msg) *DigResponse {

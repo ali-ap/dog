@@ -15,7 +15,7 @@ func AddDocumentationMiddleware(server *server.Server) {
 	sh := middleware.Redoc(opts, nil)
 	server.Router.Handle("GET", "/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
-			"message": "Communication service V 0.0.2",
+			"message": "Dog Version 0.0.1",
 		})
 	})
 

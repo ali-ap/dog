@@ -1,0 +1,209 @@
+definitions:
+  CommonError:
+    properties:
+      message:
+        description: |-
+          Message of the error
+          in: string
+        type: string
+        x-go-name: Message
+      status:
+        $ref: '#/definitions/FrameworkErrorCode'
+    type: object
+    x-go-package: dog/internal/app/common
+  CommonResponse:
+    properties:
+      message:
+        description: |-
+          Message of the response
+          in: string
+        type: string
+        x-go-name: Message
+    type: object
+    x-go-package: dog/internal/app/common
+  DigQuery:
+    properties:
+      domain:
+        description: |-
+          body of the notification
+          in: body
+        type: string
+        x-go-name: Domain
+      type:
+        description: |-
+          title of the notification
+          in: body
+        format: uint16
+        type: integer
+        x-go-name: Type
+    required:
+    - type
+    - domain
+    type: object
+    x-go-package: dog/internal/app/dig/queries
+  DigResponse:
+    properties:
+      raw:
+        $ref: '#/definitions/Msg'
+      records:
+        description: |-
+          DNS records
+          in: []string
+        items:
+          type: string
+        type: array
+        x-go-name: Records
+    type: object
+    x-go-package: dog/internal/app/dig/dtos
+  FrameworkErrorCode:
+    format: int16
+    type: integer
+    x-go-package: dog/internal/app/common
+  Msg:
+    properties:
+      Answer:
+        items:
+          $ref: '#/definitions/RR'
+        type: array
+      AuthenticatedData:
+        type: boolean
+      Authoritative:
+        type: boolean
+      CheckingDisabled:
+        type: boolean
+      Extra:
+        items:
+          $ref: '#/definitions/RR'
+        type: array
+      Id:
+        format: uint16
+        type: integer
+      Ns:
+        items:
+          $ref: '#/definitions/RR'
+        type: array
+      Opcode:
+        format: int64
+        type: integer
+      Question:
+        items:
+          $ref: '#/definitions/Question'
+        type: array
+      Rcode:
+        format: int64
+        type: integer
+      RecursionAvailable:
+        type: boolean
+      RecursionDesired:
+        type: boolean
+      Response:
+        type: boolean
+      Truncated:
+        type: boolean
+      Zero:
+        type: boolean
+    title: Msg contains the layout of a DNS message.
+    type: object
+    x-go-package: github.com/miekg/dns
+  MsgHdr:
+    properties:
+      AuthenticatedData:
+        type: boolean
+      Authoritative:
+        type: boolean
+      CheckingDisabled:
+        type: boolean
+      Id:
+        format: uint16
+        type: integer
+      Opcode:
+        format: int64
+        type: integer
+      Rcode:
+        format: int64
+        type: integer
+      RecursionAvailable:
+        type: boolean
+      RecursionDesired:
+        type: boolean
+      Response:
+        type: boolean
+      Truncated:
+        type: boolean
+      Zero:
+        type: boolean
+    title: MsgHdr is a a manually-unpacked version of (id, bits).
+    type: object
+    x-go-package: github.com/miekg/dns
+  Question:
+    description: |-
+      Question holds a DNS question. Usually there is just one. While the
+      original DNS RFCs allow multiple questions in the question section of a
+      message, in practice it never works. Because most DNS servers see multiple
+      questions as an error, it is recommended to only have one question per
+      message.
+    properties:
+      Name:
+        type: string
+      Qclass:
+        format: uint16
+        type: integer
+      Qtype:
+        format: uint16
+        type: integer
+    type: object
+    x-go-package: github.com/miekg/dns
+  RR:
+    properties:
+      Header:
+        $ref: '#/definitions/RR_Header'
+      String:
+        description: String returns the text representation of the resource record.
+        type: string
+    title: An RR represents a resource record.
+    type: object
+    x-go-package: github.com/miekg/dns
+  RR_Header:
+    properties:
+      Class:
+        format: uint16
+        type: integer
+      Name:
+        type: string
+      Rdlength:
+        format: uint16
+        type: integer
+      Rrtype:
+        format: uint16
+        type: integer
+      Ttl:
+        format: uint32
+        type: integer
+    title: RR_Header is the header all DNS resource records share.
+    type: object
+    x-go-package: github.com/miekg/dns
+paths:
+  /api/v1/dig/:
+    post:
+      consumes:
+      - app/json
+      operationId: Dig
+      parameters:
+      - in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/DigQuery'
+          type: object
+      produces:
+      - app/json
+      responses:
+        "200":
+          description: DigResponse
+          schema:
+            $ref: '#/definitions/DigResponse'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+swagger: "2.0"

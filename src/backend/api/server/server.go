@@ -15,25 +15,14 @@ type Server struct {
 }
 
 func NewServer() *Server {
-	config, err := configs.NewConfig()
-	if err != nil {
-		log.Fatal(err)
-	}
-	configs.AppConfig = config
+	ReadConfig()
 	router := gin.Default()
-	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"*"},
-		AllowMethods:     []string{"*"},
-		AllowHeaders:     []string{"*"},
-		AllowCredentials: true,
-	}))
+	AddCordsMiddleware(router)
 	RegisterRoutes(router)
 	initializeServer()
-
 	return &Server{
 		Router: router,
 	}
-
 }
 
 var RegisterRoutes = func(router *gin.Engine) {
@@ -53,4 +42,20 @@ func (server *Server) Run(port string) {
 	if err != nil {
 		panic(fmt.Sprintf("can not run the router error : %v", err))
 	}
+}
+
+func ReadConfig() {
+	config, err := configs.NewConfig()
+	if err != nil {
+		log.Fatal(err)
+	}
+	configs.AppConfig = config
+}
+func AddCordsMiddleware(router *gin.Engine) {
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"*"},
+		AllowHeaders:     []string{"*"},
+		AllowCredentials: true,
+	}))
 }

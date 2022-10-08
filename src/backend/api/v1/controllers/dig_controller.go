@@ -8,9 +8,7 @@ import (
 	"net/http"
 )
 
-// swagger:route POST /api/v1/notification/topic/ Notification SendPushNotificationToTopic
-// send notification to all subscribed devices to a specific topic
-//
+// swagger:route POST /api/v1/dig/ Dig
 // consumes:
 //     - app/json
 // produces:
@@ -19,10 +17,10 @@ import (
 //       + name: input
 //         in: body
 //         required: true
-//         type: SendPushNotificationToTopicCommand
+//         type: DigQuery
 // responses:
 //  400: CommonError
-//  200: CommonResponse
+//  200: DigResponse
 func Dig(context *gin.Context) {
 
 	var query queries.DigQuery
