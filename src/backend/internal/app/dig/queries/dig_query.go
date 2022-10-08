@@ -12,7 +12,7 @@ type DigQuery struct {
 	// title of the notification
 	// in: body
 	// required: true
-	Type uint16 `json:"type" validate:"required,gte=0,lte=100"`
+	Type uint16 `json:"type" validate:"required,gte=0,lte=5258"`
 
 	// body of the notification
 	// in: body

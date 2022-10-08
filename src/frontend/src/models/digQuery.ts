@@ -1,6 +1,6 @@
 interface DigQueryModel {
-    type: string;
-    domain: number;
+    type: number;
+    domain: string;
 }
 
 

@@ -19,6 +19,8 @@ type Config struct {
 	} `yaml:"dig"`
 }
 
+var AppConfig *Config
+
 func NewConfig() (*Config, error) {
 
 	configPath, err := ParseFlags()

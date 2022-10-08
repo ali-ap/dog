@@ -4,7 +4,6 @@ import (
 	"dog/configs"
 	"github.com/lixiangzhong/dnsutil"
 	"github.com/miekg/dns"
-	"log"
 )
 
 type DigService struct {
@@ -13,11 +12,7 @@ type DigService struct {
 
 func NewDigService() *DigService {
 	var dig dnsutil.Dig
-	config, err := configs.NewConfig()
-	if err != nil {
-		log.Fatal(err)
-	}
-	dig.At(config.Dig.Host)
+	dig.At(configs.AppConfig.Dig.Host)
 	return &DigService{Groper: &dig}
 }
 
