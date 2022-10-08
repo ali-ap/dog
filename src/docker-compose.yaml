@@ -1,0 +1,28 @@
+services:
+  backend:
+    build:
+      context: backend
+    restart: always
+    networks:
+      - dog-network
+    ports:
+      - 8083:80
+    expose:
+      - 80
+  frontend:
+    build:
+      context: frontend
+      args:
+        REACT_APP_API_URL: http://localhost:8083/
+    ports:
+      - 8082:80
+    networks:
+      - dog-network
+    depends_on:
+      - backend
+    expose:
+      - 80
+    links:
+      - backend
+networks:
+  dog-network: {}

@@ -17,7 +17,7 @@ type Server struct {
 func NewServer() *Server {
 	ReadConfig()
 	router := gin.Default()
-	AddCordsMiddleware(router)
+	router.Use(cors.Default())
 	RegisterRoutes(router)
 	initializeServer()
 	return &Server{
@@ -50,12 +50,4 @@ func ReadConfig() {
 		log.Fatal(err)
 	}
 	configs.AppConfig = config
-}
-func AddCordsMiddleware(router *gin.Engine) {
-	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"*"},
-		AllowMethods:     []string{"*"},
-		AllowHeaders:     []string{"*"},
-		AllowCredentials: true,
-	}))
 }
