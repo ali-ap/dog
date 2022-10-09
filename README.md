@@ -3,30 +3,45 @@ simple domain information groper
 
 ## Installation
 
-Using Manual build requires a raven database connection for tests to pass and for service to function. database connection can be changed in application settings.
+You can easily run the application using docker-compose.
 
 
-Since the service is docker enabled another option is to use docker-compose.
-
+For building the images.
+```bash
+docker compose build --no-cache   
+```
+For Running The application.
 ```bash
 docker-compose up --force-recreate
 ```
-for rebuild images in case of changes
-```bash
-docker-compose build
-```
+
 ## Usage
 
-you can find structural documentation and API client in the link below
+By default, OpenAPI documentation can be accessed using the below URL.
 
 ```python
-http://localhost:5060/swagger
+http://localhost:8083/docs
 ```
+
+By default, the application frontend can be accessed using the below URL.
+
+```python
+http://localhost:8082/
+```
+
+If any of those ports (8082,8083) has been already occupied you can change them in the docker-compose file. Just make sure if you change the backend service which uses 8083, change the REACT_APP_API_URL environment variable as well.
+
+```python
+REACT_APP_API_URL: http://localhost:8083/
+```
+
+use the left-hand side drawer menu to navigate to the dig page and you can check the raw view option to see the response raw result.
+
+![a glimpse of the ui and dns lookup page](/assets/img1.png "Dig component")
 
 ## Contributing
 Pull requests are welcome. feel free to add comments and improvement request and I will change them ASAP.
 
-Please make sure to update the tests as appropriate.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

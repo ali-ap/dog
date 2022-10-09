@@ -52,12 +52,12 @@ export default function DigForm() {
                 >
                     <Box
                         sx={{
-                            marginTop: 8,
+                            marginTop: 5,
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
                             flexGrow: 1,
-                            minHeight: '60vh',
+                            marginBottom: 5,
                             overflow: 'auto',
                         }}
                     >
