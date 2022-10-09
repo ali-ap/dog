@@ -22,6 +22,7 @@ By default, OpenAPI documentation can be accessed using the below URL.
 ```python
 http://localhost:8083/docs
 ```
+![a glimpse of the open API documentaion](/assets/img2.png "Open API documentation")
 
 By default, the application frontend can be accessed using the below URL.
 
@@ -35,7 +36,8 @@ If any of those ports (8082,8083) has been already occupied you can change them 
 REACT_APP_API_URL: http://localhost:8083/
 ```
 
-use the left-hand side drawer menu to navigate to the dig page and you can check the raw view option to see the response raw result.
+use the left-hand side drawer menu to navigate to the dig page.
+You can check the raw view option to see the response raw result.
 
 ![a glimpse of the ui and dns lookup page](/assets/img1.png "Dig component")
 
