@@ -3,7 +3,7 @@ simple domain information groper
 
 ## Installation
 
-You can easily run the application using docker-compose.
+You can easily run the application using docker-compose located in /src folder.
 
 
 For building the images.
