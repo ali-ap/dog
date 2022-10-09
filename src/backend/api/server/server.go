@@ -14,8 +14,8 @@ type Server struct {
 	Router *gin.Engine
 }
 
-func NewServer() *Server {
-	ReadConfig()
+func NewServer(path string) *Server {
+	ReadConfig(path)
 	router := gin.Default()
 	router.Use(cors.Default())
 	RegisterRoutes(router)
@@ -44,8 +44,8 @@ func (server *Server) Run(port string) {
 	}
 }
 
-func ReadConfig() {
-	config, err := configs.NewConfig()
+func ReadConfig(path string) {
+	config, err := configs.NewConfig(path)
 	if err != nil {
 		log.Fatal(err)
 	}

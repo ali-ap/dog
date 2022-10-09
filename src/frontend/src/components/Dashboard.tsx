@@ -7,7 +7,7 @@ import { ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/mater
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
-import { purple } from '@mui/material/colors';
+import { cyan } from '@mui/material/colors';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
@@ -88,7 +88,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme({
     palette: {
-        primary: purple,
+        primary: cyan,
     },
 });
 

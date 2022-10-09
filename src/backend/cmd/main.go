@@ -14,7 +14,7 @@ func main() {
 		}
 	}()
 
-	server := server.NewServer()
+	server := server.NewServer("./configs/app_config.yml")
 	middlewares.AddDocumentationMiddleware(server)
 	server.Run(configs.AppConfig.Application.Port)
 }

@@ -21,9 +21,10 @@ type Config struct {
 
 var AppConfig *Config
 
-func NewConfig() (*Config, error) {
-
-	configPath, err := ParseFlags()
+func NewConfig(path string) (*Config, error) {
+	currentDir, err := os.Getwd()
+	fmt.Println(currentDir)
+	configPath, err := ParseFlags(path)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -56,12 +57,12 @@ func ValidateConfigPath(path string) error {
 	return nil
 }
 
-func ParseFlags() (string, error) {
+func ParseFlags(path string) (string, error) {
 	var configPath string
 
 	// Set up a CLI flag called "-config" to allow users
 	// to supply the configuration file
-	flag.StringVar(&configPath, "config", "./configs/app_config.yml", "path to config file")
+	flag.StringVar(&configPath, "config", path, "path to config file")
 	flag.Parse()
 
 	if err := ValidateConfigPath(configPath); err != nil {

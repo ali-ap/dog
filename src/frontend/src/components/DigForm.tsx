@@ -36,7 +36,6 @@ export default function DigForm() {
         event.preventDefault();
         setShowResult(true)
         const response = await appService.Dig(model)
-        debugger
         setResult(response)
     };
 

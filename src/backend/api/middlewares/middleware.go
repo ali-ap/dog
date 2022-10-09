@@ -19,9 +19,6 @@ func AddDocumentationMiddleware(server *server.Server) {
 		})
 	})
 
-	//server.Router.GET("/swagger.yaml", func(c *gin.Context) {
-	//	c.FileFromFS(path.Join("/swagger.yaml"), http.FS(static.Swagger))
-	//})
 	server.Router.GET("/static/*filepath", func(c *gin.Context) {
 		_, fileName := path.Split(c.Request.URL.Path)
 		c.FileFromFS(fileName, http.FS(static.Files))
